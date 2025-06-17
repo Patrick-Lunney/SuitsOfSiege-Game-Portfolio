@@ -32,7 +32,7 @@ This pattern allows for adding new behaviours to objects dynamically. Here, `Kin
 
 ```csharp
 // King Attack Strategy, Implementing the Decorator Pattern to Add Bonus Damage
-public class KingAttackStrategy: SpecialCardStrategy
+public class KingAttackStrategy : SpecialCardStrategy
 {
     // Constant Defining the Bonus Damage for the King Strategy
     private const int KING_BONUS_DAMAGE = 100; 
@@ -55,21 +55,15 @@ public class KingAttackStrategy: SpecialCardStrategy
 The Factory pattern is used to abstract the complex process of object creation. This method creates different tower types based on the `suitType` provided, decoupling the client code from the specific tower creation logic.
 ```csharp
 // Creates a Tower Instance Based on the Specified Suit Type
-private BaseTower CreateTowerBySuitType(TowerSuitType suitType, Texture2D towerTexture, 
-                                        Texture2D projectileTexture, Vector2 position, int level)
+private BaseTower CreateTowerBySuitType(TowerSuitType suitType, Texture2D towerTexture, Texture2D projectileTexture, Vector2 position, int level)
 {
     return suitType switch
     {
-        TowerSuitType.Spades => new SpadesTower(towerTexture,
-            [cite_start]projectileTexture, position, _behaviourManager, _towerManager, level), [cite: 363]
-        TowerSuitType.Clubs => new ClubsTower(towerTexture,
-            [cite_start]projectileTexture, position, _behaviourManager, _towerManager, level), [cite: 363]
-        TowerSuitType.Diamonds => new DiamondsTower(towerTexture,
-            [cite_start]projectileTexture, position, _behaviourManager, _towerManager, level), [cite: 364]
-        TowerSuitType.Hearts => new HeartsTower(towerTexture,
-            [cite_start]projectileTexture, position, _behaviourManager, _towerManager, level), [cite: 365]
-        _ => new BasicTower(towerTexture, projectileTexture, position,
-            _behaviourManager, _towerManager, level)
+        TowerSuitType.Spades => new SpadesTower(towerTexture, projectileTexture, position, _behaviourManager, _towerManager, level),
+        TowerSuitType.Clubs => new ClubsTower(towerTexture, projectileTexture, position, _behaviourManager, _towerManager, level),
+        TowerSuitType.Diamonds => new DiamondsTower(towerTexture, projectileTexture, position, _behaviourManager, _towerManager, level),
+        TowerSuitType.Hearts => new HeartsTower(towerTexture, projectileTexture, position, _behaviourManager, _towerManager, level),
+        _ => new BasicTower(towerTexture, projectileTexture, position, _behaviourManager, _towerManager, level)
     };
 }
 ```
