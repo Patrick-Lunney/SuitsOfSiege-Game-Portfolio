@@ -12,6 +12,8 @@ Suits of Siege is a tower defence game that combines strategic defence mechanics
 * ⚔️ **Strategic Combat System:** Each suit provides towers with unique abilities, such as Spades applying a slow effect or Clubs dealing bonus damage. This system uses the Strategy and Decorator design patterns to allow special evolved cards to layer their effects, like a "Queen" adding a critical hit chance on top of any suit's base ability.
 * 👾 **Progressive Enemy Waves:** The game challenges the player with five distinct tiers of enemies with escalating health. Powerful Joker bosses with high health appear every five waves to test the player's defensive strategy.
 
+---
+
 ## Architectural Deep-Dive
 This project was an opportunity to perform a deep-dive into software architecture and object-oriented design principles.
 
@@ -25,6 +27,8 @@ To ensure the code is clean, maintainable, and scalable, several key software de
 * **Decorator:** Implements special card effects (Queen, King, etc.) by wrapping and extending the base suit strategies without modifying their code.
 * **Observer (Pub/Sub):** The `EventSystem` allows game components to subscribe and react to events (e.g., `TowerSelected`, `BaseDamaged`) without being tightly coupled.
 * **Command:** Encapsulates all tower operations (Place, Morph, Upgrade) into command objects, which are then executed by the `TowerManager`.
+
+---
 
 ### Code Snippets
 **Decorator Pattern: KingAttackStrategy.cs**:
@@ -68,6 +72,8 @@ private BaseTower CreateTowerBySuitType(TowerSuitType suitType, Texture2D towerT
 }
 ```
 
+---
+
 ## UML Diagrams
 The following diagrams illustrate some of the key architectural systems built for the project to ensure a clean, maintainable, and scalable codebase.
 
@@ -83,12 +89,16 @@ The following diagrams illustrate some of the key architectural systems built fo
   <img src="assets/images/attack_strategy_uml.png" width="85%">
 </p>
 
+---
+
 ### Project Documentation
 For a deeper dive into the project's design, architecture, and codebase structure, please see the detailed technical documents below:
 
 * **[Game Design Document](./docs/DESIGN_DOCUMENT.md):** The original design document covering the game's overview, theme, mechanics, and systems.
 * **[Codebase Overview](./docs/CODEBASE_OVERVIEW.md):** A guided tour of the project's source code structure and organisation.
 * **[Architectural Decisions](./docs/ARCHITECTURAL_DECISIONS.md):** An explanation of the key software design patterns used and the reasoning behind them.
+
+---
 
 ## How to Run
 This project is a portfolio showcase and is not available for public distribution. Please see the video and code snippets above for a demonstration of its functionality and architecture.
