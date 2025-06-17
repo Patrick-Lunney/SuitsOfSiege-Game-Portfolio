@@ -83,5 +83,12 @@ The following diagrams illustrate some of the key architectural systems built fo
   <img src="assets/images/attack_strategy_uml.png" width="85%">
 </p>
 
+### Project Documentation
+For a deeper dive into the project's design, architecture, and codebase structure, please see the detailed technical documents below:
+
+* **[Game Design Document](./docs/DESIGN_DOCUMENT.md):** The original design document covering the game's overview, theme, mechanics, and systems.
+* **[Codebase Overview](./docs/CODEBASE_OVERVIEW.md):** A guided tour of the project's source code structure and organisation.
+* **[Architectural Decisions](./docs/ARCHITECTURAL_DECISIONS.md):** An explanation of the key software design patterns used and the reasoning behind them.
+
 ## How to Run
 This project is a portfolio showcase and is not available for public distribution. Please see the video and code snippets above for a demonstration of its functionality and architecture.
