@@ -27,21 +27,66 @@ To ensure the code is clean, maintainable, and scalable, several key software de
 * **Command:** Encapsulates all tower operations (Place, Morph, Upgrade) into command objects, which are then executed by the `TowerManager`.
 
 ### Code Snippets
-<p align="center">
-  <img src="assets/src_snippets/decorator_pattern_kingstrategy.PNG" width="45%">
-  &nbsp; &nbsp; &nbsp; &nbsp;
-  <img src="assets/src_snippets/factory_pattern_towerfactory.PNG" width="45%">
-</p>
-<p align="center"> 
-  <i>Left: The Decorator Pattern in action, adding a "King's" bonus damage. Right: The Tower Factory abstracts the creation of different tower types.</i>
-</p>
+**Decorator Pattern: KingAttackStrategy.cs**:
+This pattern allows for adding new behaviours to objects dynamically. Here, `KingAttackStrategy` "decorates" a base attack by adding bonus damage without altering the base attack's code.
 
-### UML Diagrams
+```csharp
+// King Attack Strategy, Implementing the Decorator Pattern to Add Bonus Damage
+public class KingAttackStrategy: SpecialCardStrategy
+{
+    // Constant Defining the Bonus Damage for the King Strategy
+    private const int KING_BONUS_DAMAGE = 100; 
+
+    // Initializes the King Strategy with the Given Base Attack Strategy
+    public KingAttackStrategy(ITowerAttackStrategy baseStrategy)
+        : base(baseStrategy) 
+    {
+    }
+
+    // Overrides the Attack Method, Adding Bonus Damage to Each Attack
+    public override void Attack(BaseEnemy enemy)
+    {
+        base.Attack(enemy); 
+        enemy.ReceiveDamage(KING_BONUS_DAMAGE); 
+    }
+}
+```
+**Factory Pattern: TowerFactory.cs**:
+The Factory pattern is used to abstract the complex process of object creation. This method creates different tower types based on the `suitType` provided, decoupling the client code from the specific tower creation logic.
+```csharp
+// Creates a Tower Instance Based on the Specified Suit Type
+private BaseTower CreateTowerBySuitType(TowerSuitType suitType, Texture2D towerTexture, 
+                                        Texture2D projectileTexture, Vector2 position, int level)
+{
+    return suitType switch
+    {
+        TowerSuitType.Spades => new SpadesTower(towerTexture,
+            [cite_start]projectileTexture, position, _behaviourManager, _towerManager, level), [cite: 363]
+        TowerSuitType.Clubs => new ClubsTower(towerTexture,
+            [cite_start]projectileTexture, position, _behaviourManager, _towerManager, level), [cite: 363]
+        TowerSuitType.Diamonds => new DiamondsTower(towerTexture,
+            [cite_start]projectileTexture, position, _behaviourManager, _towerManager, level), [cite: 364]
+        TowerSuitType.Hearts => new HeartsTower(towerTexture,
+            [cite_start]projectileTexture, position, _behaviourManager, _towerManager, level), [cite: 365]
+        _ => new BasicTower(towerTexture, projectileTexture, position,
+            _behaviourManager, _towerManager, level)
+    };
+}
+```
+
+## UML Diagrams
+The following diagrams illustrate some of the key architectural systems built for the project to ensure a clean, maintainable, and scalable codebase.
+
 <p align="center">
-  <img src="assets/images/attack_strategy_uml.png" width="80%">
+  <i>This first diagram details the UI System, showing the relationships between managers, factories, and the core UI elements.</i>
+  <br>
+  <img src="assets/images/ui-architecture-uml.png" width="85%">
 </p>
-<p align="center"> 
-  <i>A UML diagram illustrating the use of the Strategy and Decorator patterns for tower attack logic.</i>
+<br>
+<p align="center">
+  <i>This second diagram showcases the Strategy and Decorator patterns used to create a flexible and extensible tower attack system.</i>
+  <br>
+  <img src="assets/images/attack_strategy_uml.png" width="85%">
 </p>
 
 ## How to Run
